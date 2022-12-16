@@ -5,11 +5,8 @@ O objetivo deste projeto é subir um servidor Nginx com PHP 7 e MySQL de forma f
 
 ## :warning: Instalação  
 <p>Clone o repositório na sua máquina:</p> 
-```
 git clone https://github.com/rodrigotrindade/docker-server
-```
+<p></p>
 <p>Acesse a pasta e rode o Docker-compose:</p> 
-```
 docker-compose up -d
-``` 
 ---
