@@ -1,0 +1,3 @@
+nginx/log
+php/logs
+mysql/data/mysql.sock
