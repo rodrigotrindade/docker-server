@@ -9,4 +9,3 @@ git clone https://github.com/rodrigotrindade/docker-server
 <p></p>
 <p>Acesse a pasta e rode o Docker-compose:</p> 
 docker-compose up -d
----
