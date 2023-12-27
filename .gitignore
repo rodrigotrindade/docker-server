@@ -1,3 +1,12 @@
 nginx/log
 php/logs
-mysql/data/mysql.sock
+mysql/*.pem
+mysql/data/private_key.pem
+mysql/data/public_key.pem
+mysql/data/ca-key.pem
+mysql/data/ca.pem
+mysql/data/server-key.pem
+mysql/data/server-cert.pem
+mysql/data/client-key.pem
+mysql/data/client-cert.pem
+mysql/data/mysql.sock 

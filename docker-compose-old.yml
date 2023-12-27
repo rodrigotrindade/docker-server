@@ -1,0 +1,39 @@
+services:
+  nginx:    
+    build: ./nginx/  
+    container_name: nginx-container  
+    ports:  
+      - 8000:80  
+    links:  
+      - php  
+    volumes_from:  
+      - app-data  
+  php:    
+    build: ./php/  
+    container_name: php-container  
+    expose:  
+      - 9000  
+    links:  
+      - mysql  
+    volumes_from:  
+      - app-data 
+  app-data:    
+    image: php:7.0-fpm  
+    container_name: app-data-container  
+    volumes:  
+      - ./www/html/:/var/www/html/  
+      - ./nginx/log/:/var/log/nginx/
+    command: "true"
+  mysql:    
+    image: mysql:5.7  
+    container_name: mysql-container  
+    volumes:  
+      - ./mysql/data:/var/lib/mysql
+    ports:
+      - "3309:3306" 
+    # environment:  
+    #   MYSQL_ROOT_PASSWORD: confirma  
+    #   MYSQL_DATABASE: klein
+    #   MYSQL_USER: root  
+    #   MYSQL_PASSWORD: confirma  
+    #   MYSQL_ROOT_HOST: '%'

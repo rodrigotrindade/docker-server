@@ -1,38 +1,21 @@
+version: '3'
 services:
-  nginx:    
-    build: ./nginx/  
-    container_name: nginx-container  
-    ports:  
-      - 90:80  
-    links:  
-      - php  
-    volumes_from:  
-      - app-data  
-  php:    
-    build: ./php/  
-    container_name: php-container  
-    expose:  
-      - 9000  
-    links:  
-      - mysql  
-    volumes_from:  
-      - app-data 
-  app-data:    
-    image: php:7.0-fpm  
-    container_name: app-data-container  
-    volumes:  
-      - ./www/html/:/var/www/html/  
-      - ./nginx/log/:/var/log/nginx/
-    command: "true"
-  mysql:    
-    image: mysql:5.7  
-    container_name: mysql-container  
-    volumes:  
-      - ./mysql/data:/var/lib/mysql
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./www/html:/var/www/html
     ports:
-      - "3309:3306" 
-    # environment:  
-    #   MYSQL_ROOT_PASSWORD: confirma  
-    #   MYSQL_DATABASE: Daniel 
-    #   MYSQL_USER: myuser  
-    #   MYSQL_PASSWORD: password  
+      - 90:80
+    depends_on:
+      - db
+  db:
+    image: mysql:5.7
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=klein
+      - MYSQL_USER=trindade
+      - MYSQL_PASSWORD=confirma
