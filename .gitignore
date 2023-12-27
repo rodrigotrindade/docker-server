@@ -1,6 +1,5 @@
 nginx/log
 php/logs
-mysql/*.pem
 mysql/data/private_key.pem
 mysql/data/public_key.pem
 mysql/data/ca-key.pem
