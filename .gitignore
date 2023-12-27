@@ -1,4 +1,5 @@
 nginx/log
 php/logs
 mysql/*.pem
+mysql/data/*.pem
 mysql/data/mysql.sock
