@@ -1,5 +1,7 @@
-FROM php:7.4-apache
+FROM php:7.4-fpm
 
-RUN docker-php-ext-install mysqli
+# Instala extensões necessárias
+RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-COPY php.ini /usr/local/etc/php/
+# (Opcional) outras úteis
+# RUN docker-php-ext-install gd mbstring zip
