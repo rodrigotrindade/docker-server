@@ -1,0 +1,25 @@
+# Este arquivo e' carregado automaticamente pelo docker-compose junto com o
+# docker-compose.yml principal (nao precisa passar -f). Adiciona o Mailpit
+# (captura de emails locais) e aponta o servico "php" para um Dockerfile
+# alternativo (Dockerfile.mail) que instala o msmtp e redireciona o mail()
+# do PHP para o Mailpit, sem alterar o docker-compose.yml / Dockerfile
+# originais.
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile.mail
+    depends_on:
+      - mailpit
+    networks:
+      - app-network
+
+  mailpit:
+    image: axllent/mailpit:latest
+    container_name: mailpit
+    restart: unless-stopped
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+    networks:
+      - app-network

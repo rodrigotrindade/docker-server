@@ -1,0 +1,18 @@
+# Dados do MySQL: arquivos internos do container, não são portáveis entre
+# máquinas/versões. Para migrar ou fazer backup, exporte um dump:
+#   docker exec mysql_server sh -c "exec mysqldump -uroot -proot --all-databases" > backup.sql
+mysql/
+
+# Sites dentro de www/: cada projeto é independente (tem seu próprio
+# versionamento, ou nenhum) e não deve ser rastreado por este repositório.
+# Único arquivo do painel que pertence a este repo:
+www/*
+!www/index.php
+
+# Cache gerado automaticamente pelo painel (www/index.php)
+www/.panel-cache.json
+www/_probe.txt
+
+# Sistema
+.DS_Store
+Thumbs.db

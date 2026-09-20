@@ -1,7 +1,14 @@
-FROM php:7.4-fpm
+FROM php:8.3-fpm
 
-# Instala extensões necessárias
-RUN docker-php-ext-install mysqli pdo pdo_mysql
+RUN apt-get update && apt-get install -y \
+        libpng-dev \
+        libjpeg-dev \
+        libwebp-dev \
+        libfreetype6-dev \
+    && docker-php-ext-configure gd --with-jpeg --with-webp --with-freetype \
+    && docker-php-ext-install -j"$(nproc)" gd mysqli pdo pdo_mysql \
+    && rm -rf /var/lib/apt/lists/*
 
-# (Opcional) outras úteis
-# RUN docker-php-ext-install gd mbstring zip
+COPY uploads.ini /usr/local/etc/php/conf.d/uploads.ini
+
+WORKDIR /var/www/html
